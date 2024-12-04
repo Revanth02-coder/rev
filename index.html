@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Responsive Navbar with Image Gallery</title>
+    <link href="https://fonts.googleapis.com/css2?family=Audiowide&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Lora:wght@400;500&display=swap" rel="stylesheet">
+    <style>
+        /* Basic reset for the page */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        /* Body and font setup */
+        body {
+            font-family: 'Lora', serif;
+            background-color: #FFFDF2; /* Background color for padding */
+        }
+
+        /* Audiowide font for the title */
+        .audiowide-regular {
+            font-family: 'Audiowide', sans-serif;
+            font-weight: 400;
+            font-style: normal;
+            font-size: 36px;
+            text-align: center;
+        }
+
+        /* Navbar styles */
+        .navbar {
+            background-color: #FFFDF2; /* Background color for padding */
+            padding: 10px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .nav-list {
+            list-style-type: none;
+            display: flex;
+            padding-left: 0;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .nav-item {
+            position: relative;
+            margin: 0 15px;
+        }
+
+        .nav-link {
+            display: block;
+            padding: 10px 25px;
+            color: black;
+            text-decoration: none;
+            font-size: 18px;
+            transition: all 0.3s ease;
+            border-radius: 25px;
+            background-color: #FFFDF2; /* Background color for padding */
+        }
+
+        .nav-item:hover .nav-link {
+            background-color: #D3D3D3;
+            color: black;
+            transform: scale(1.1); /* Slight zoom effect on hover */
+        }
+
+        /* Gallery styles */
+        .gallery {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+            height: 800px; /* Set height */
+            width: 90%; /* Full width */
+            overflow: hidden; /* Hide overflow */
+            background-color: #FFFDF2; /* Background color for padding */
+            padding: 20px; /* Padding around the image */
+            border-radius: 50px; /* Apply border-radius to the gallery container */
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Optional: shadow effect */
+            margin-left: 75px;
+        }
+
+        .gallery::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(to bottom, rgba(0, 0, 0, 0.5), transparent); /* Gradient from black to transparent */
+            z-index: 1; /* Place it above the images but below the text */
+        }
+
+        .gallery img {
+            position: absolute; /* Positioning for transition */
+            top: 0;
+            left: 0;
+            height: calc(100% - 0px); /* Full height minus padding */
+            object-fit: cover; /* Cover the area without distortion */
+            opacity: 0; /* Start hidden */
+            transition: opacity 1s ease, transform 0.5s ease; /* Fade effect */
+            z-index: 0; /* Place images below the gradient */
+        }
+
+        .gallery img.active {
+            opacity: 1; /* Show active image */
+        }
+
+        /* Button styles */
+        .nav-button {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background: #D3D3D3; /* Background color for buttons */
+            border: none;
+            font-size: 30px;
+            color: #000000;
+            cursor: pointer;
+            z-index: 10;
+            transition: transform 0.3s ease-in-out, background 0.3s ease; /* Smooth transition */
+            padding: 10px; /* Padding for buttons */
+ border-radius: 50%; /* Circular buttons */
+        }
+
+        
+
+        .prev-button {
+            left: 10px;
+        }
+
+        .next-button {
+            right: 10px;
+        }
+
+        /* Text display on image */
+        .image-text {
+            position: absolute;
+            top: 150px;
+            left: 60px;
+            color: white;
+            font-size: 70px;
+            font-weight: bold;
+            padding: 10px;
+            border-radius: 5px;
+            font-family: Garamond, Georgia, Times, Serif;
+            z-index: 10; /* Ensure text is above the images and gradient */
+        }
+
+        .first-word {
+            color: #f0e8be; /* Set the color for the first word */
+        }
+
+        /* Responsive design */
+        @media (max-width: 768px) {
+            .nav-list {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .nav-item {
+                margin-bottom: 10px;
+                margin-right: 0;
+            }
+
+            .navbar {
+                flex-direction: column;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <nav class="navbar">
+        <ul class="nav-list">
+            <li class="nav-item"><a href="#" class="nav-link">Home</a></li>
+            <li class="nav-item"><a href="#" class="nav-link">About</a></li>
+            <li class="nav-item"><span class="audiowide-regular">OAK'S PRIME INTERIOR</span></li>
+            <li class="nav-item"><a href="#" class="nav-link">Services</a></li>
+            <li class="nav-item"><a href="#" class="nav-link">Contact</a></li>
+        </ul>
+    </nav>
+
+    <div class="gallery">
+        <img src="images/IMG-20200731-WA0020 copy.jpg" class="active" alt="Image 1">
+        <div class="image-text"><span class="first-word">Designing spaces</span>,<br> that inspire creativity and relaxation</div>
+
+        <img src="images/IMG-20200731-WA0025.jpg" alt="Image 2">
+        <div class="image-text"><span class="first-word">Bringing your</span>,<br> dream home to life with style</div>
+
+        <img src="images/safeimagekit-IMG-20201116-WA0071.jpg" alt="Image 3">
+        <div class="image-text"><span class="first-word">Where modern</span>,<br>elegance meets timeless interior design</div>
+
+        <img src="images/safeimagekit-WhatsApp Image 2024-07-01 at 17.11.56_1b0ccdd6.jpg" alt="Image 4">
+        <div class="image-text"><span class="first-word">Transforming rooms into beautiful</span>,<br> functional living spaces</div>
+
+        <button class="nav-button prev-button" id="prevButton">&#8592;</button>
+        <button class="nav-button next-button" id="nextButton">&#8594;</button>
+    </div>
+
+    <script>
+        const images = document.querySelectorAll('.gallery img');
+        const prevButton = document.getElementById('prevButton');
+        const nextButton = document.getElementById('nextButton');
+        const imageTexts = document.querySelectorAll('.image-text');
+        let currentIndex = 0;
+
+        function showImage(index) {
+            images.forEach((img, i) => {
+                img.classList.remove('active');
+                imageTexts[i].style.display = 'none'; // Hide all text
+                if (i === index) {
+                    img.classList.add('active');
+                    imageTexts[i].style.display = 'block'; // Show text for current image
+                }
+            });
+        }
+
+        function nextImage() {
+            currentIndex = (currentIndex + 1) % images.length;
+            showImage(currentIndex);
+        }
+
+        function prevImage() {
+            currentIndex = (currentIndex - 1 + images.length) % images.length;
+            showImage(currentIndex);
+        }
+
+        nextButton.addEventListener('click', nextImage);
+        prevButton.addEventListener('click', prevImage);
+
+        setInterval(nextImage, 5000); // Change image every 5 seconds
+
+        showImage(currentIndex); // Initialize gallery
+    </script>
+
+</ html>
+</body>
+</html>
